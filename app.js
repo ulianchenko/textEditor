@@ -69,11 +69,15 @@ async function writeFile(fileHandle, fileText) {
   }
 }
 
-function getCheckboxHandle(checkbox, fileText) {
+function getCheckboxHandle(checkbox, contentArea) {
   if (checkbox.checked) {
-    const strToFile = checkbox.id;
-    const matchedText = fileText.replace(/\s*-\s/, '#')
-    console.log(strToFile);
+    const regexCheckboxId = new RegExp(`\\s*-\\s${checkbox.id}`);
+    const newContentAreaText = contentArea.value.replace(regexCheckboxId, matchStr => `\n#${matchStr.slice(1)}`);
+    contentArea.value = newContentAreaText;
+  } else {
+    const regex = new RegExp(`\#\\s*-\\s${checkbox.id}`);
+    const newContentAreaText = contentArea.value.replace(regex, matchStr => `${matchStr.slice(1)}`);
+    contentArea.value = newContentAreaText;
   }
 }
 
@@ -84,5 +88,5 @@ btnSaveAs.addEventListener('click', async () => writeFile(await getNewFileHandle
 // btnSplit.addEventListener('click', () => getSplitHandle(editArea))
 
 checkBoxes.forEach(checkbox => {
-  checkbox.addEventListener('change', () => getCheckboxHandle(checkbox, editArea.value));
+  checkbox.addEventListener('change', () => getCheckboxHandle(checkbox, editArea));
 })
