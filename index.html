@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Text editor</title>
+  </head>
+  <body>
+    <main>
+      <section class="userForm">
+        <div class="userData" id="userData">
+          <div class="inputsContainer">
+            <input type="text" class="firstName" name="firstName" placeholder="First name...">
+            <button class="btnAdd">Add</button>
+          </div>
+          <div class="optionsContainer">
+            <div class="option" id="optionAhead">
+              <p class="userOptionText">lorem ipsum dolor sit amet</p>
+              <input class="userOption" type="checkbox" name="ahead" id="ahead">
+            </div>
+            <div class="option" id="OptionOptipack">
+              <p class="userOptionText">lorem ipsum dolor sit amet</p>
+              <input class="userOption" type="checkbox" name="optipack" id="optipack">
+            </div>
+            <div class="option" id="ptionOpticheck">
+              <p class="userOptionText">lorem ipsum dolor sit amet</p>
+              <input class="userOption" type="checkbox" name="opticheck" id="opticheck">
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="edit">
+        <button class="btnOpen">Open...</button>
+        <textarea class="editArea" name="editArea" id="editArea"></textarea>
+        <div class="saveInterface">
+          <button class="btnSave">Save</button>
+          <button class="btnSaveAs">Save as...</button>
+        </div>
+      </section>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>
