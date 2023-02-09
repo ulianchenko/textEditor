@@ -8,26 +8,52 @@
   </head>
   <body>
     <main>
-      <section class="userForm">
-        <div class="userData" id="userData">
+      <section class="userData">
+        <div class="userForm" id="userForm">
           <div class="inputsContainer">
             <input type="text" class="firstName" name="firstName" placeholder="First name...">
             <button class="btnAdd">Add</button>
           </div>
-          <div class="optionsContainer">
-            <div class="option" id="optionaheat">
-              <p class="userOptionText">lorem ipsum dolor sit amet</p>
-              <input class="userOption" type="checkbox" name="aheat" id="aheat">
+          <form class="formContainer">
+            <div class="optionsContainer">
+              <div class="option" id="optionaheat">
+                <p class="userOptionText">Run aheat script (?)</p>
+                <input class="userOption" type="checkbox" name="aheat" id="aheat">
+              </div>
+              <div class="option" id="OptionOptipack">
+                <p class="userOptionText">Run optipack script (?)</p>
+                <input class="userOption" type="checkbox" name="optipack" id="optipack">
+              </div>
+              <div class="option" id="ptionOpticheck">
+                <p class="userOptionText">Run opticheck script (?)</p>
+                <input class="userOption" type="checkbox" name="opticheck" id="opticheck">
+              </div>
             </div>
-            <div class="option" id="OptionOptipack">
-              <p class="userOptionText">lorem ipsum dolor sit amet</p>
-              <input class="userOption" type="checkbox" name="optipack" id="optipack">
+            <div class="scriptDirectoryContainer">
+              <p class="scriptDirectoryText">Directories of scripts</p>
+              <button class="scriptDirectoryOpen">Open...</button>
             </div>
-            <div class="option" id="ptionOpticheck">
-              <p class="userOptionText">lorem ipsum dolor sit amet</p>
-              <input class="userOption" type="checkbox" name="opticheck" id="opticheck">
+            <div class="aheatSettingsContainer">
+              <div class="aheatSetting">
+                <p class="aheatInvText">Path to inventory...</p>
+                <button class="aheatInvOpen">Open...</button>
+              </div>
+              <div class="aheatSetting">
+                <p class="aheatHldText">Path to hld...</p>
+                <button class="aheatHldOpen">Open...</button>
+              </div>
+              <div class="aheatSetting">
+                <p class="aheatHlmText">Insert interpolftion type (lin/log) ...</p>
+              </div>
+              <div class="aheatSetting">
+                <p class="aheatHlwText">Uranium mass...</p>
+              </div>
+              <div class="aheatSetting">
+                <p class="aheatCtText">CT range [1, 2, ... , 60]</p>
+                <button class="aheatCtOpen">Default...</button>
+              </div>
             </div>
-          </div>
+          </form>
         </div>
       </section>
       <section class="edit">

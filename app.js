@@ -14,6 +14,8 @@ function getAddHandle(addContent, fileContent) {
 }
 
 //////////////////////////////////////////////////
+// splits the file text content into lines array
+//////////////////////////////////////////////////
 // function getSplitHandle(fileContent) {
 //   const str = fileContent.value;
 //   const strArr = str.split(/\n/gm);
@@ -70,15 +72,15 @@ async function writeFile(fileHandle, fileText) {
 }
 
 function getCheckboxHandle(checkbox, contentArea) {
+  let newContentAreaText = '';
   if (checkbox.checked) {
-    const regexCheckboxId = new RegExp(`\\s*-\\s${checkbox.id}`);
-    const newContentAreaText = contentArea.value.replace(regexCheckboxId, matchStr => `\n#${matchStr.slice(1)}`);
-    contentArea.value = newContentAreaText;
+    const regexIdFirstMatch = new RegExp(`\\s*-\\s${checkbox.id}`);
+    newContentAreaText = contentArea.value.replace(regexIdFirstMatch, matchStr => `\n#${matchStr.slice(1)}`);
   } else {
-    const regex = new RegExp(`\#\\s*-\\s${checkbox.id}`);
-    const newContentAreaText = contentArea.value.replace(regex, matchStr => `${matchStr.slice(1)}`);
-    contentArea.value = newContentAreaText;
+    const regexHashFistMatch = new RegExp(`\#\\s*-\\s${checkbox.id}`);
+    newContentAreaText = contentArea.value.replace(regexHashFistMatch, matchStr => `${matchStr.slice(1)}`);
   }
+  contentArea.value = newContentAreaText;
 }
 
 btnAdd.addEventListener('click', () => getAddHandle(firstName, editArea));
