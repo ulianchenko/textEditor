@@ -7,6 +7,7 @@ const btnSaveAs = document.querySelector('.btnSaveAs');
 const editArea = document.querySelector('.editArea');
 const firstName = document.querySelector('.firstName');
 const checkBoxes = document.querySelectorAll('[type="checkbox"]');
+const 
 
 function getAddHandle(addContent, fileContent) {
   fileContent.value = `${addContent.value}\n${fileContent.value}`;
