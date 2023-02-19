@@ -10,57 +10,83 @@
     <main>
       <section class="userData">
         <div class="userForm" id="userForm">
-          <div class="inputsContainer">
+          <!-- <div class="inputsContainer">
             <input type="text" class="firstName" name="firstName" placeholder="First name...">
             <button class="btnAdd">Add</button>
+          </div> -->
+          <div class="projectDirectorySelectorContainer">
+            <button class="btnProjectDirectory">Select project directory</button>
+            <p class="projectDirectoryName">Project directory:</p>
           </div>
           <div class="formContainer">
             <div class="optionsContainer">
-              <div class="option" id="optionaheat">
+              <div class="option" id="optionAheat">
                 <p class="userOptionText">Run aheat script (?)</p>
                 <input class="userOption" type="checkbox" name="aheat" id="aheat">
               </div>
-              <div class="option" id="OptionOptipack">
+              <div class="option" id="optionOptipack">
                 <p class="userOptionText">Run optipack script (?)</p>
                 <input class="userOption" type="checkbox" name="optipack" id="optipack">
               </div>
-              <div class="option" id="ptionOpticheck">
+              <div class="option" id="optionOpticheck">
                 <p class="userOptionText">Run opticheck script (?)</p>
                 <input class="userOption" type="checkbox" name="opticheck" id="opticheck">
               </div>
+              <div class="scriptDirectoryContainer">
+                <p class="scriptDirectoryText">Directories of scripts</p>
+                <button class="scriptDirectoryOpen" id="scripts_dir">Open...</button>
+              </div>
             </div>
-            <div class="scriptDirectoryContainer">
+            <!-- <div class="scriptDirectoryContainer">
               <p class="scriptDirectoryText">Directories of scripts</p>
               <button class="scriptDirectoryOpen">Open...</button>
-            </div>
+            </div> -->
             <div class="aheatSettingsContainer">
               <div class="aheatSetting">
-                <p class="aheatInvText">Path to inventory...</p>
-                <button class="aheatInvOpen">Open...</button>
+                <p class="aheatText">Path to inventory...</p>
+                <!-- <input type="file" class="aheatInvOpenInp" id="invInp" style="display: none;"> -->
+                <button class="aheatOpenBtn" id="inv">Open...</button>
+                <!-- <input type="button" class="aheatInvOpen" id="inv"> -->
+                
               </div>
               <div class="aheatSetting">
-                <p class="aheatHldText">Path to hld...</p>
-                <button class="aheatHldOpen">Open...</button>
+                <p class="aheatText">Path to hld...</p>
+                <button class="aheatOpenBtn" id="hld">Open...</button>
               </div>
               <div class="aheatSetting">
-                <p class="aheatHlmText">Insert interpolftion type (lin/log) ...</p>
+                <select class="aheatText" id="hlm">
+                  <option value="" selected disabled>Interpolation mode (lin/log) ...</option>
+                  <option value="lin">lin</option>
+                  <option value="log">log</option>
+                </select>
               </div>
               <div class="aheatSetting">
-                <p class="aheatHlwText">Uranium mass...</p>
+                <input class="aheatText" id="hlw" placeholder="Uranium mass...">
               </div>
               <div class="aheatSetting">
-                <p class="aheatCtText">CT range [1, 2, ... , 60]</p>
-                <button class="aheatCtOpen">Default...</button>
+                <p class="aheatText lastAheatText">CT range [1, 2, ... , 60]</p>
+                <button class="aheatDefaultBtn" id="cooling_times" data-default="[ 1,  2,  3,  4,  5,  6,  7,  8,  9, 10,
+                  11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+                  21, 22, 23, 24, 25, 26, 27, 28, 29, 30,
+                  31, 32, 33, 34, 35, 36, 37, 38, 39, 40,
+                  41, 42, 43, 44, 45, 46, 47, 48, 49, 50,
+                  51, 52, 53, 54, 55, 56, 57, 58, 59, 60]">Default...</button>
               </div>
             </div>
           </div>
         </div>
       </section>
       <section class="edit">
-        <button class="btnOpen">Open...</button>
+        <!-- <button class="btnOpen">Open...</button> -->
+        <button class="help">?</button>
+        <div class="helpTextContainer">
+          <p class="helpText">- Calculates heatload for a range of coolingtimes of a certain bernup</p>
+          <p class="helpText">- Creates a loadingplan based on inputs in opticheck card</p>
+          <p class="helpText">- Verifies loadingplan</p>
+        </div>
         <textarea class="editArea" name="editArea" id="editArea"></textarea>
         <div class="saveInterface">
-          <button class="btnSave">Save</button>
+          <!-- <button class="btnSave">Save</button> -->
           <button class="btnSaveAs">Save as...</button>
         </div>
       </section>
