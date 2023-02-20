@@ -25,13 +25,16 @@ const btnSaveAs = document.querySelector('.btnSaveAs');
 const btnScriptDirectoryOpen = document.querySelector('.scriptDirectoryOpen');
 const projectDirectoryName = document.querySelector('.projectDirectoryName');
 const aheatOpenBtns = document.querySelectorAll('.aheatOpenBtn');
-const aheatDefaultBtn = document.querySelector('.aheatDefaultBtn');
+const aheatDefaultBtn = document.querySelectorAll('.aheatDefaultBtn');
+const optipackDefaultBtn = document.querySelectorAll('.optipackDefaultBtn');
+const opticheckDefaultBtn = document.querySelectorAll('.opticheckDefaultBtn');
 
 const editArea = document.querySelector('.editArea');
-const firstName = document.querySelector('.firstName');
-const checkBoxes = document.querySelectorAll('[type="checkbox"]');
-const aheatSettingsContainer = document.querySelector('.aheatSettingsContainer');
+// const firstName = document.querySelector('.firstName');
+const checkBoxes = document.querySelectorAll('.userOption[type="checkbox"]');
+// const aheatSettingsContainer = document.querySelector('.aheatSettingsContainer');
 const aheatInput = document.querySelectorAll('.aheatSetting select, .aheatSetting input');
+const opticheckInput = document.querySelectorAll('.opticheckSetting input');
 // const aheatInput = document.querySelector('.aheatSetting input');
 // const entryStr = `run:
 // #  - aheat
@@ -60,7 +63,11 @@ const entryStrObj = {
 #=====================================================================#
 `,
   optipack: `run_scripts:
-optipack: |-
+  optipack: |-
+#    inputs:
+#    execute:
+
+#=====================================================================#
 `,
   opticheck: `opticheck:
 #   ahl:
@@ -74,7 +81,7 @@ optipack: |-
 #   hlf:
 #   dmf: 
 #   dad:
-#   bla: 1/26/2020
+#   bla:
 #
 #   en_lim: 5.0   # < wt%
 #   #ct_lim: 10.0  # > years
@@ -107,6 +114,8 @@ optipack: |-
 };
 
 editArea.value = entryStrObj.entry;
+editArea.style.height = `${editArea.scrollHeight + 3}px`;
+
 let projectDirectory;
 
 // function getAddHandle(addContent, fileContent) {
@@ -115,15 +124,19 @@ let projectDirectory;
 // }
 
 async function getProjectDirectory(event) {
-  projectDirectory = await window.showDirectoryPicker({startIn: 'documents'});
-  // const dirSample = new FileSystemDirectoryHandle();
-  // console.log(projectDirectory);
-  // console.log(dirSample);
-  projectDirectoryName.textContent += ` ${projectDirectory.name}`;
-  // for await (const entry of projectDirectory.values()) {
-  //   console.log(entry.kind, entry.name);
-  // }
-  event.target.style.boxShadow = '0 0 5px 3px rgb(34, 139, 34)';
+  try {
+    projectDirectory = await window.showDirectoryPicker({startIn: 'documents'});
+    // const dirSample = new FileSystemDirectoryHandle();
+    // console.log(projectDirectory);
+    // console.log(dirSample);
+    projectDirectoryName.textContent += ` ${projectDirectory.name}`;
+    // for await (const entry of projectDirectory.values()) {
+    //   console.log(entry.kind, entry.name);
+    // }
+    event.target.style.boxShadow = '0 0 5px 3px rgb(0, 128, 0)';
+  } catch (error) {
+    console.log(error.message);
+  }
 }
 
 //////////////////////////////////////////////////
@@ -245,60 +258,70 @@ function getCheckboxHandle(checkbox, contentArea) {
     return;
   }
   contentArea.value += entryStrObj[checkbox.id];
-  aheatSettingsContainer.style.display = 'block';
+  // aheatSettingsContainer.style.display = 'block';
+  document.querySelector(`.${checkbox.id}SettingsContainer`).style.display = 'block';
   // contentArea.value = newContentAreaText;
+  editArea.style.height = `${editArea.scrollHeight + 3}px`;
 }
 async function getScriptDirectoryOpenHandle(button, contentArea) {
-  // let newContentAreaText = '';
-  const directoryHandle = await window.showDirectoryPicker({startIn: projectDirectory});
-  // projectDirectory = directoryHandle;
-  // const directoryTree = await directoryHandle.entries();
-  // for (const name of directoryTree) {
-    // log each entry
-    // console.log(name);
-  // }
-  const regexIdFirstMatch = new RegExp(`\#\\s*${button.id}:`);
-  contentArea.value = contentArea.value.replace(regexIdFirstMatch, matchStr => `${matchStr.slice(1)} ../${directoryHandle.name}`);
-  // contentArea.value = newContentAreaText;
+  try {
+    // let newContentAreaText = '';
+    const directoryHandle = await window.showDirectoryPicker({startIn: projectDirectory});
+    // projectDirectory = directoryHandle;
+    // const directoryTree = await directoryHandle.entries();
+    // for (const name of directoryTree) {
+      // log each entry
+      // console.log(name);
+    // }
+    const regexIdFirstMatch = new RegExp(`\#\\s*${button.id}:`);
+    contentArea.value = contentArea.value.replace(regexIdFirstMatch, matchStr => `${matchStr.slice(1)} ../${directoryHandle.name}`);
+    // contentArea.value = newContentAreaText;
+  } catch (error) {
+    console.log(error.message);
+  }
 }
 
 async function getAheatOpenHandle(button, contentArea) {
-  // let newContentAreaText = '';
-  // [handle] = await window.showOpenFilePicker({startIn: 'documents'});
- const handle = await window.showOpenFilePicker({startIn: projectDirectory});
-//  const handle = await self.showOpenFilePicker();
-  // console.log(handle);
-  // const fileData = await handle.getFile();
-  // const fileDirectory = await handle.getDirectory();
-  // console.log(fileData);
-
-  // console.log(URL.createObjectURL(fileData));
-
-  // console.log(projectDirectory);
-
-  const relativePaths = await projectDirectory.resolve(handle[0]);
-  // console.log(relativePaths);
-  // for (const name of relativePaths) {
-  //   // log each entry
-  //   console.log(name);
-  // }
-
-  const path = relativePaths.join('/');
-  // console.log(path);
-  const regexIdFirstMatch = new RegExp(`\#\\s*${button.id}:`);
-  contentArea.value = contentArea.value.replace(regexIdFirstMatch, matchStr => `${matchStr.slice(1)} ../${path}`);
-  // contentArea.value = newContentAreaText;
-
-  // const regexIdFirstMatch = new RegExp(`\#\\s*${button.id}:`);
-  // newContentAreaText = contentArea.value.replace(regexIdFirstMatch, matchStr => `${matchStr.slice(1)} ../${directoryHandle.name}`);
-  // contentArea.value = newContentAreaText;
-  // const root = await navigator.storage.getDirectory();
-  // const draftHandle = await root.getFileHandle('draft.txt', { create: true });
-  // const accessHandle = await draftHandle.createSyncAccessHandle();
-  // console.log(root);
-  // console.log(draftHandle);
-  // console.log(accessHandle);
-  // accessHandle.close();
+  try {
+    // let newContentAreaText = '';
+    // [handle] = await window.showOpenFilePicker({startIn: 'documents'});
+   const handle = await window.showOpenFilePicker({startIn: projectDirectory});
+  //  const handle = await self.showOpenFilePicker();
+    // console.log(handle);
+    // const fileData = await handle.getFile();
+    // const fileDirectory = await handle.getDirectory();
+    // console.log(fileData);
+  
+    // console.log(URL.createObjectURL(fileData));
+  
+    // console.log(projectDirectory);
+  
+    const relativePaths = await projectDirectory.resolve(handle[0]);
+    // console.log(relativePaths);
+    // for (const name of relativePaths) {
+    //   // log each entry
+    //   console.log(name);
+    // }
+  
+    const path = relativePaths.join('/');
+    // console.log(path);
+    const regexIdFirstMatch = new RegExp(`\#\\s*${button.id}:`);
+    contentArea.value = contentArea.value.replace(regexIdFirstMatch, matchStr => `${matchStr.slice(1)} ../${path}`);
+    // contentArea.value = newContentAreaText;
+  
+    // const regexIdFirstMatch = new RegExp(`\#\\s*${button.id}:`);
+    // newContentAreaText = contentArea.value.replace(regexIdFirstMatch, matchStr => `${matchStr.slice(1)} ../${directoryHandle.name}`);
+    // contentArea.value = newContentAreaText;
+    // const root = await navigator.storage.getDirectory();
+    // const draftHandle = await root.getFileHandle('draft.txt', { create: true });
+    // const accessHandle = await draftHandle.createSyncAccessHandle();
+    // console.log(root);
+    // console.log(draftHandle);
+    // console.log(accessHandle);
+    // accessHandle.close();
+  } catch (error) {
+    console.log(error.message);
+  }
 }
 
 // function getAheatSettingsSelect(select, contentArea) {
@@ -313,11 +336,36 @@ function getAheatSettingsInput(elem, contentArea) {
   elem.blur();
 }
 
+function getOpticheckSettingsInput(elem, contentArea) {
+  const prefixLength = 10;
+  const regexIdFirstMatch = new RegExp(`\#\\s*${elem.id.slice(prefixLength)}:`);
+  contentArea.value = contentArea.value.replace(regexIdFirstMatch, matchStr => `${matchStr.slice(1)} ${elem.value}`);
+  elem.blur();
+}
+
 function getAheatDefaultHandle(elem, contentArea) {
   // console.log(elem.dataset.default);
   const regexIdFirstMatch = new RegExp(`\#\\s*${elem.id}:`);
   contentArea.value = contentArea.value.replace(regexIdFirstMatch, matchStr => `${matchStr.slice(1)} ${elem.dataset.default}`);
+  editArea.style.height = `${editArea.scrollHeight + 3}px`;
 }
+
+function getOptipackDefaultHandle(elem, contentArea) {
+  // console.log(elem.dataset.default);
+  const regexIdFirstMatch = new RegExp(`\#\\s*${elem.id}:`);
+  contentArea.value = contentArea.value.replace(regexIdFirstMatch, matchStr => `${matchStr.slice(1)} ${elem.dataset.default}`);
+  editArea.style.height = `${editArea.scrollHeight + 3}px`;
+}
+
+function getOpticheckDefaultHandle(elem, contentArea) {
+  // console.log(elem.dataset.default);
+  const prefixLength = 10;
+  const regexIdFirstMatch = new RegExp(`\#\\s*${elem.id.slice(prefixLength)}:`);
+  contentArea.value = contentArea.value.replace(regexIdFirstMatch, matchStr => `${matchStr.slice(1)} ${elem.dataset.default}`);
+  editArea.style.height = `${editArea.scrollHeight + 3}px`;
+}
+
+
 
 // btnAdd.addEventListener('click', () => getAddHandle(firstName, editArea));
 // btnOpen.addEventListener('click', () => getOpenFileHandle(editArea));
@@ -344,4 +392,10 @@ aheatOpenBtns.forEach(btn => btn.addEventListener('click', event => getAheatOpen
 
 aheatInput.forEach(elem => elem.addEventListener('change', event => getAheatSettingsInput(event.target, editArea)));
 
-aheatDefaultBtn.addEventListener('click', event => getAheatDefaultHandle(event.target, editArea));
+opticheckInput.forEach(elem => elem.addEventListener('change', event => getOpticheckSettingsInput(event.target, editArea)));
+
+aheatDefaultBtn.forEach(btn => btn.addEventListener('click', event => getAheatDefaultHandle(event.target, editArea)));
+
+optipackDefaultBtn.forEach(btn => btn.addEventListener('click', event => getOptipackDefaultHandle(event.target, editArea)));
+
+opticheckDefaultBtn.forEach(btn => btn.addEventListener('click', event => getOpticheckDefaultHandle(event.target, editArea)));

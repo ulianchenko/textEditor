@@ -43,7 +43,7 @@
             </div> -->
             <div class="aheatSettingsContainer">
               <div class="aheatSetting">
-                <p class="aheatText">Path to inventory...</p>
+                <p class="aheatText">Path to inv...</p>
                 <!-- <input type="file" class="aheatInvOpenInp" id="invInp" style="display: none;"> -->
                 <button class="aheatOpenBtn" id="inv">Open...</button>
                 <!-- <input type="button" class="aheatInvOpen" id="inv"> -->
@@ -70,7 +70,103 @@
                   21, 22, 23, 24, 25, 26, 27, 28, 29, 30,
                   31, 32, 33, 34, 35, 36, 37, 38, 39, 40,
                   41, 42, 43, 44, 45, 46, 47, 48, 49, 50,
-                  51, 52, 53, 54, 55, 56, 57, 58, 59, 60]">Default...</button>
+                  51, 52, 53, 54, 55, 56, 57, 58, 59, 60]">
+                  Default...
+                </button>
+              </div>
+            </div>
+            <div class="optipackSettingsContainer">
+              <div class="optipackSetting">
+                <p class="optipackText">Inputs</p>
+                <button class="optipackDefaultBtn" id="inputs" data-default="cp ..\inputs\otp.in .">
+                  Default...
+                </button>
+              </div>
+              <div class="optipackSetting">
+                <p class="optipackText lastOptipackText">Execute</p>
+                <button class="optipackDefaultBtn" id="execute" data-default="..\bin\otp01.exe > optipack-out.txt">
+                  Default...
+                </button>
+              </div>
+            </div>
+            <div class="opticheckSettingsContainer">
+              <div class="opticheckSetting">
+                <p class="opticheckText">Path to ahl...</p>
+                <button class="opticheckDefaultBtn" id="opticheck_ahl" data-default="../01-aheat/aheat-out.csv">
+                  Default...
+                </button>
+              </div>
+              <div class="opticheckSetting">
+                <p class="opticheckText">Path to inv...</p>
+                <button class="opticheckDefaultBtn" id="opticheck_inv" data-default="../inputs/inv.csv">
+                  Default...
+                </button>
+              </div>
+              <div class="opticheckSetting">
+                <p class="opticheckText lastOpticheckText">Path to nfh...</p>
+                <button class="opticheckDefaultBtn" id="opticheck_nfh" data-default="../inputs/nfh.csv">
+                  Default...
+                </button>
+              </div>
+              <div class="opticheckSetting">
+                <p class="opticheckText emptyOpticheckText"></p>
+              </div>
+              <div class="opticheckSetting">
+                <p class="opticheckText">Path to oa...</p>
+                <button class="opticheckDefaultBtn" id="opticheck_oa" data-default="../02-optipack/otp-oa.csv">
+                  Default...
+                </button>
+              </div>
+              <div class="opticheckSetting">
+                <p class="opticheckText">Path to om...</p>
+                <button class="opticheckDefaultBtn" id="opticheck_om" data-default="../02-optipack/otp-om.csv">
+                  Default...
+                </button>
+              </div>
+              <div class="opticheckSetting">
+                <p class="opticheckText lastOpticheckText">Path to alt...</p>
+                <button class="opticheckDefaultBtn" id="opticheck_alt" data-default="../02-optipack/otp-alt.csv">
+                  Default...
+                </button>
+              </div>
+              <div class="opticheckSetting">
+                <p class="opticheckText emptyOpticheckText"></p>
+              </div>
+              <div class="opticheckSetting">
+                <p class="opticheckText">Path to hlf...</p>
+                <button class="opticheckDefaultBtn" id="opticheck_hlf" data-default="-1       # Use Reg Guide HL uncertainty">
+                  Default...
+                </button>
+              </div>
+              <div class="opticheckSetting">
+                <p class="opticheckText">Path to dmf...</p>
+                <button class="opticheckDefaultBtn" id="opticheck_dmf" data-default="1        # no heat load penality for damaged fuel">
+                  Default...
+                </button>
+              </div>
+              <div class="opticheckSetting">
+                <p class="opticheckText">Path to dad...</p>
+                <button class="opticheckDefaultBtn" id="opticheck_dad" data-default="7        # Days between casks">
+                  Default...
+                </button>
+              </div>
+              <div class="opticheckSetting">
+                <input class="opticheckText lastOpticheckText" id="opticheck_bla" placeholder="Uranium mass...">
+              </div>
+              <div class="opticheckSetting">
+                <p class="opticheckText emptyOpticheckText"></p>
+              </div>
+              <div class="opticheckSetting">
+                <p class="opticheckText lastOpticheckText">Path to en_lim...</p>
+              </div>
+              <div class="opticheckSetting">
+                <p class="opticheckText emptyOpticheckText"></p>
+              </div>
+              <div class="opticheckSetting">
+                <p class="opticheckText emptyOpticheckText"></p>
+              </div>
+              <div class="opticheckSetting">
+                <p class="opticheckText emptyOpticheckText"></p>
               </div>
             </div>
           </div>

@@ -11,8 +11,10 @@ main {
 
 .formContainer {
   border: 1px solid rgb(118, 118, 118);
+  border-bottom: none;
   border-radius: 2px;
-  height: 500px;
+  /* height: 1500px; */
+  height: fit-content;
   margin-top: 10px;
 }
 
@@ -32,7 +34,7 @@ main {
 }
 
 .btnProjectDirectory {
-  box-shadow: 0 0 5px 3px rgb(255, 0, 0);
+  box-shadow: 0 0 5px 3px rgb(255,165,0);
 }
 
 .projectDirectoryName {
@@ -56,14 +58,14 @@ main {
   flex-direction: column;
   gap: 2px;
   /* height: 70px; */
-  height: 95px;
+  height: 112px;
   padding: 15px 10px 10px 10px;
 }
 
 .option {
   align-items: center;
   display: flex;
-  height: 12px;
+  height: 17px;
   justify-content: space-between;
   padding: 0 5px;
 }
@@ -84,7 +86,7 @@ main {
   /* border-bottom: 1px solid rgb(118, 118, 118); */
   display: flex;
   /* height: 140px; */
-  height: 12px;
+  height: 17px;
   justify-content: space-between;
   /* padding: 10px; */
 }
@@ -110,11 +112,25 @@ main {
 .aheatSettingsContainer {
   border-bottom: 1px solid rgb(118, 118, 118);
   display: none;
-  height: 180px;
-  padding: 10px;
+  height: 222px;
+  padding: 27px 10px 10px 10px;
 }
 
-.aheatText {
+.optipackSettingsContainer {
+  border-bottom: 1px solid rgb(118, 118, 118);
+  display: none;
+  height: 100px;
+  padding: 40px 10px 10px 10px;
+}
+
+.opticheckSettingsContainer {
+  border-bottom: 1px solid rgb(118, 118, 118);
+  display: none;
+  height: 320px;
+  padding: 27px 10px 10px 10px;
+}
+
+.aheatText, .optipackText, .opticheckText {
   border: 1px solid rgb(118, 118, 118);
   border-bottom: none;
   /* font-family: monospace; */
@@ -124,8 +140,13 @@ main {
   width: 275px;
 }
 
-.lastAheatText {
+.lastAheatText, .lastOptipackText, .lastOpticheckText {
   border: 1px solid rgb(118, 118, 118);
+}
+
+.emptyOpticheckText {
+  border: none;
+  height: 17px;
 }
 
 .aheatSetting select {
@@ -136,13 +157,13 @@ main {
   border-bottom: 1px solid rgb(118, 118, 118);
 } */
 
-.aheatSettingsContainer button {
+.aheatSettingsContainer button, .optipackSetting button, .opticheckSetting button {
   font-size: 11px;
   height: 17px;
   margin-right: 8px;
 }
 
-.aheatSetting {
+.aheatSetting, .optipackSetting, .opticheckSetting {
   display: flex;
   justify-content: space-between;
 }
@@ -177,6 +198,7 @@ button {
   display: none;
   flex-direction: column;
   height: fit-content;
+  line-height: 17px;
   padding: 0 5px;
   position: absolute;
   right: -100px;
@@ -190,7 +212,8 @@ button {
 .editArea {
   display: block;
   font-size: 12px;
-  height: 500px;
+  /* height: 1230px; */
+  line-height: 17px;
   margin-top: 60px;
   width: 500px;
 }
